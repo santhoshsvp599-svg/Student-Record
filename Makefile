@@ -1,20 +1,25 @@
-CC ?= gcc
-CFLAGS ?= -Wall -Wextra -std=c11
+out:main.o stud_add.o stud_del.o stud_sort.o stud_save.o stud_exit.o stud_show.o stud_mod.o	
+	gcc main.o stud_add.o stud_del.o stud_sort.o stud_save.o stud_exit.o stud_show.o stud_mod.o -o out
 
-TARGET := out
-OBJECTS := main.o stud_add.o stud_del.o stud_sort.o stud_save.o stud_show.o stud_mod.o
+main.o:main.c header.h
+	gcc -c main.c
+stud_add.o:stud_add.c header.h
+	gcc -c stud_add.c
+stud_del.o:stud_del.c header.h
+	gcc -c stud_del.c
 
-.PHONY: all clean
+stud_sort.o:stud_sort.c header.h
+	gcc -c stud_sort.c
 
-all: $(TARGET)
+stud_save.o:stud_save.c header.h
+	gcc -c stud_save.c
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $@
+stud_exit.o:stud_exit.c header.h
+	gcc -c stud_exit.c
 
-main.o stud_add.o stud_del.o stud_sort.o stud_save.o stud_show.o stud_mod.o: student.h
+stud_show.o:stud_show.c header.h
+	gcc -c stud_show.c
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+stud_mod.o:stud_mod.c header.h
+	gcc -c stud_mod.c
 
-clean:
-	$(RM) $(OBJECTS) $(TARGET) $(TARGET).exe
